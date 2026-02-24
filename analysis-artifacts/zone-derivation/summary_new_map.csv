@@ -1,0 +1,2 @@
+source_osm,bbox_minlon,bbox_maxlon,bbox_minlat,bbox_maxlat,bbox_population_estimate,zone_count,max_zone_home_weight,mean_zone_home_weight
+D:/IJ projects/matsim-example-project-master/original-input-data/shamalgan/map,76.59685,76.69865,43.34753,43.38965,30481.40234375,79,1146.867,385.84051898734174

@@ -9,23 +9,22 @@
 		<!-- <version>15.0</version> -->
 
 		<!-- PR-labelled release -->
-		<!--Version used for DRT Accessibility Paper-->
-		<version>2026.0-PR3626</version>
+		<version>2025.0</version>
 
 		<!-- snapshot == not recommended: rather use PR-labelled release!-->
 <!--		<version>2025.0-SNAPSHOT</version>-->
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.github.matsim-scenarios</groupId>
-	<artifactId>matsim-gunma</artifactId>
+	<groupId>org.matsim.project</groupId>
+	<artifactId>matsim-shamalgan-template</artifactId>
 	<version>1.x-SNAPSHOT</version>
 
-	<name>MATSim Gunma Model</name>
-	<description>A transport model of Gunma Prefecture in Japan</description>
+	<name>MATSim Shamalgan Model</name>
+	<description>A transport model of Shamalgan (Almaty region)</description>
 
 	<properties>
-		<main.class>org.matsim.run.RunGunmaScenario</main.class>
+		<main.class>org.matsim.project.RunShamalgan</main.class>
 
 		<!-- Don't modify, will use the same version as parent -->
 		<matsim.version>${project.parent.version}</matsim.version>
@@ -65,6 +64,26 @@
 			<groupId>org.matsim.contrib</groupId>
 			<artifactId>accessibility</artifactId>
 			<version>${matsim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.matsim</groupId>
+			<artifactId>matsim-examples</artifactId>
+			<version>${matsim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.matsim.contrib</groupId>
+			<artifactId>osm</artifactId>
+			<version>${matsim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.matsim.contrib</groupId>
+			<artifactId>otfvis</artifactId>
+			<version>${matsim.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.matsim-org</groupId>
+			<artifactId>gtfs2matsim</artifactId>
+			<version>19f1676fc6</version>
 		</dependency>
 
 
@@ -139,6 +158,11 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.10.1</version>
+				<configuration>
+					<includes>
+						<include>org/matsim/project/**/*.java</include>
+					</includes>
+				</configuration>
 			</plugin>
 
 			<plugin>

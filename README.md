@@ -1,5 +1,7 @@
 # The MATSim Open Template Scenario
 
+For your migrated Shamalgan setup, see `README_SHAMALGAN.md`.
+
 ![Build Status](https://github.com/matsim-scenarios/matsim-scenario-template/workflows/build/badge.svg?branch=main)
 ![license](https://img.shields.io/github/license/matsim-scenarios/matsim-scenario-template.svg)
 ![JDK](https://img.shields.io/badge/JDK-17+-green.svg)

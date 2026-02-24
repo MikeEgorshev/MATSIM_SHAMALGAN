@@ -1,0 +1,176 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.6523365,
+          43.3761082
+        ]
+      },
+      "properties": {
+        "osm_type": "node",
+        "osm_id": "6094479839",
+        "name": "318~323~332~426",
+        "highway": "",
+        "public_transport": "stop_position",
+        "amenity": "",
+        "bus": "yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.6610476,
+          43.3742881
+        ]
+      },
+      "properties": {
+        "osm_type": "node",
+        "osm_id": "13323336515",
+        "name": "Екпинды-1",
+        "highway": "bus_stop",
+        "public_transport": "platform",
+        "amenity": "",
+        "bus": "yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.64109,
+          43.3677269
+        ]
+      },
+      "properties": {
+        "osm_type": "node",
+        "osm_id": "10698921185",
+        "name": "Жибек Жолы",
+        "highway": "bus_stop",
+        "public_transport": "platform",
+        "amenity": "",
+        "bus": "yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.6413476,
+          43.3680274
+        ]
+      },
+      "properties": {
+        "osm_type": "node",
+        "osm_id": "12523335138",
+        "name": "Жибек Жолы",
+        "highway": "bus_stop",
+        "public_transport": "platform",
+        "amenity": "",
+        "bus": "yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.6084687,
+          43.3556791
+        ]
+      },
+      "properties": {
+        "osm_type": "node",
+        "osm_id": "10699433596",
+        "name": "Кольащы",
+        "highway": "bus_stop",
+        "public_transport": "platform",
+        "amenity": "",
+        "bus": "yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.6434091,
+          43.3775551
+        ]
+      },
+      "properties": {
+        "osm_type": "node",
+        "osm_id": "10705149058",
+        "name": "По требованию",
+        "highway": "bus_stop",
+        "public_transport": "platform",
+        "amenity": "",
+        "bus": "yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.6427803,
+          43.3775865
+        ]
+      },
+      "properties": {
+        "osm_type": "node",
+        "osm_id": "12523335135",
+        "name": "По требованию",
+        "highway": "bus_stop",
+        "public_transport": "platform",
+        "amenity": "",
+        "bus": "yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.6090946,
+          43.3568833
+        ]
+      },
+      "properties": {
+        "osm_type": "node",
+        "osm_id": "10705124687",
+        "name": "поселок Кольащы",
+        "highway": "bus_stop",
+        "public_transport": "platform",
+        "amenity": "",
+        "bus": "yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.6162194,
+          43.3667057
+        ]
+      },
+      "properties": {
+        "osm_type": "node",
+        "osm_id": "10581598642",
+        "name": "ст. Шамалган",
+        "highway": "bus_stop",
+        "public_transport": "platform",
+        "amenity": "",
+        "bus": "yes"
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+osm_type,osm_id,name,lon,lat,highway,public_transport,amenity,railway,bus
+node,6094479839,318~323~332~426,76.6523365,43.3761082,,stop_position,,,yes
+node,13323336515,Екпинды-1,76.6610476,43.3742881,bus_stop,platform,,,yes
+node,10698921185,Жибек Жолы,76.64109,43.3677269,bus_stop,platform,,,yes
+node,12523335138,Жибек Жолы,76.6413476,43.3680274,bus_stop,platform,,,yes
+node,10699433596,Кольащы,76.6084687,43.3556791,bus_stop,platform,,,yes
+node,10705149058,По требованию,76.6434091,43.3775551,bus_stop,platform,,,yes
+node,12523335135,По требованию,76.6427803,43.3775865,bus_stop,platform,,,yes
+node,10705124687,поселок Кольащы,76.6090946,43.3568833,bus_stop,platform,,,yes
+node,10581598642,ст. Шамалган,76.6162194,43.3667057,bus_stop,platform,,,yes

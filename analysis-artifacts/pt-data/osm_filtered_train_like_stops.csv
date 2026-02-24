@@ -1,0 +1,5 @@
+osm_type,osm_id,name,lon,lat,highway,public_transport,amenity,railway,bus,filter_reason
+node,7085909977,4031 км,76.6703534,43.3707988,,station,,halt,,train_like_not_bus
+node,2843407144,Жібек жолы,76.6260217,43.3796368,,station,,station,,train_like_not_bus
+way,1136897837,Жібек жолы,76.62461004000001,43.379656999999995,,station,,station,,train_like_not_bus
+way,1136368782,Чемолган,76.62834935999999,43.378983319999996,,station,,station,,train_like_not_bus
