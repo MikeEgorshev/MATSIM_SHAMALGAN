@@ -79,4 +79,3 @@ powershell -ExecutionPolicy Bypass -File tools\archive_outputs.ps1 -KeepLatest 1
 - `config-pt.xml` is a starter config for real transit once GTFS is converted.
 - PT bootstrap defaults are documented in `scenarios/shamalgan/PT_BOOTSTRAP_SETTINGS.md`.
 - Example-derived PT assumption baselines are documented in `analysis-artifacts/pt-data/MATSIM_EXAMPLE_PT_BASELINES.md`.
-- Live execution protocol is documented in `SHAMALGAN_WORKING_PROCESS.md`.

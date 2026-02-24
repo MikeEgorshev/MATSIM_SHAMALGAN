@@ -1,95 +1,82 @@
-# The MATSim Open Template Scenario
+# MATSim Shamalgan Scenario
 
-For your migrated Shamalgan setup, see `README_SHAMALGAN.md`.
+Transport simulation model for **Shamalgan (Zhibek Zholy), Kazakhstan** using MATSim.
 
-![Build Status](https://github.com/matsim-scenarios/matsim-scenario-template/workflows/build/badge.svg?branch=main)
-![license](https://img.shields.io/github/license/matsim-scenarios/matsim-scenario-template.svg)
-![JDK](https://img.shields.io/badge/JDK-17+-green.svg)
+This repository currently includes:
+- Road network built from OSM (`scenarios/shamalgan/network.xml`)
+- Synthetic population from derived zones (`scenarios/shamalgan/population.xml`)
+- PT bootstrap from mapped bus stops (`scenarios/shamalgan/transitSchedule.xml`, `scenarios/shamalgan/transitVehicles.xml`)
+- PT-enabled network (`scenarios/shamalgan/network-with-pt.xml`)
+- Analysis artifacts and helper scripts (`analysis-artifacts/`, `tools/`)
 
-This template was developed in 2023.  We find it quite difficult 
-to update because there are no regression tests.  At VSP, we instead
-prefer to start from an existing more modern scenario.  As of now
-(may'25), this is the matsim-lausitz scenario.  So if you are at
-VSP, please do not start from this scenario-template, but talk with
-your colleagues and/or to Kai Nagel.  kai, gregorL, may'25
+## What We Are Doing
 
-Still, this template is a nice starting point because the alternative would be to start from 0. The current workflow is: Create your github repo based on this template and look at matsim-lausitz or matsim-dresden for everything else.
-template =! running example. -sm1025
+The project goal is to build a reproducible Shamalgan baseline scenario and progressively replace assumptions with real observed data.
 
-![MATSim network and agents](https://placehold.co/500x400?text=Image+Placeholder "MATSim network and agents")
+Current PT status:
+- No reliable full GTFS yet for Almaty/Shamalgan corridor.
+- PT schedule is assumption-based from mapped stops.
+- Assumptions used in current PT build:
+  - Bus speed: `30 km/h`
+  - Dwell time: `60 s`
+  - Headway: `360 s` (6 minutes)
+  - Service window: `06:00` to `23:00`
 
+## Quick Start
 
-----
+Compile:
 
-When using this template make sure to adapt it as needed:
+```powershell
+.\mvnw.cmd -q -DskipTests compile
+```
 
-- [x] Rename Run-Class in `src/main/java` folder
-- [x] Modify config in `input`
-- [x] Update pom.xml
-  - [x] Name, description and version
-  - [x] Main class
-- [ ] Makefile
-- [ ] Update CITATION.cff (Authors and version)
-- [ ] Modify calibration.py in `src/main/python`
-- [ ] If you would like to chain jobs in SLURM, you can find the corresponding bash script for this functionality in `src/main/sh`
-  - [ ] In this script, you can specify the number of chained jobs (max_nojob), which can be found at the top.
-  - [ ] Then you'll have to define your job script. The current setup calls runCalib.sh, which in turn calls the calibrate.py script.
-- [ ] Update README.md (This file)
-  - [ ] Change Name and URLs
-  - [ ] Check whether you are using Senozon data and change it according to your license agreement.
-  - [ ] Badges
-  - [ ] Remove this TODO list when done
+Run default Shamalgan scenario:
 
-----
+```powershell
+.\mvnw.cmd -q exec:java "-Dexec.mainClass=org.matsim.project.RunShamalgan"
+```
 
-### About this project
+Run PT-enabled scenario with SimWrapper dashboards:
 
-This repository provides an open MATSim transport model for [name], provided by the [Transport Systems Planning and Transport Telematics group](https://www.tu.berlin/vsp) of [Technische Universität Berlin](https://www.tu.berlin/).
+```powershell
+.\mvnw.cmd -q exec:java "-Dexec.mainClass=org.matsim.project.RunShamalgan" "-Dexec.args=scenarios/shamalgan/config-pt.xml --simwrapper"
+```
 
-<a rel="TU Berlin" href="https://www.vsp.tu-berlin.de"><img src="https://svn.vsp.tu-berlin.de/repos/public-svn/ueber_uns/logo/TU_BERLIN_Logo_Lang_RGB_SR_rot.svg" width="35%" height="35%"/></a>
+Build assumed PT inputs from mapped OSM bus stops:
 
-This scenario contains a 25pct sample of [name] and its surrounding area; road capacities are accordingly reduced. The scenario is calibrated taking into consideration the traffic counts, modal split and mode-specific trip distance distributions.
+```powershell
+.\mvnw.cmd -q exec:java "-Dexec.mainClass=org.matsim.project.PrepareShamalganTransitFromAssumptions" "-Dexec.args=scenarios/shamalgan/network.xml analysis-artifacts/pt-data/osm_bus_stops.csv scenarios/shamalgan/network-with-pt.xml scenarios/shamalgan/transitSchedule.xml scenarios/shamalgan/transitVehicles.xml 30 60 360 06:00:00 23:00:00"
+```
 
-### Licenses
+Archive old outputs (keeps newest):
 
-The **MATSim program code** in this repository is distributed under the terms of the [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.html.en). The MATSim program code are files that reside in the directory `src/main/java/org/matsim`.
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\archive_outputs.ps1 -KeepLatest 1
+```
 
-The **MATSim input population** is licensed under the <a rel="license" href="https://creativecommons.org/licenses/by-nc/3.0/de/deed.de"> Creative Commons Attribution CC-BY-NC 3.0 DE License </a> and was provided in its initial version by Senozon Deutschland GmbH.
+## Visuals
 
-The **MATSim input files, output files, analysis data and visualizations** are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br /> MATSim input files are those that are used as input to run MATSim. They often, but not always, have a header pointing to matsim.org. They typically reside in the `scenarios` directory hierarchy. MATSim output files, analysis data, and visualizations are files generated by MATSim runs, or by postprocessing.  They typically reside in a directory hierarchy starting with `output`.
+OSM bus stops used for PT bootstrap:
 
-**Other data files**, in particular in `original-input-data`, have their own individual licenses that need to be individually clarified with the copyright holders.
+![OSM bus stops](analysis-artifacts/pt-data/osm_bus_stops_map.png)
 
-### Note
+Assumed PT network map:
 
-Handling of large files within git is not without problems (git lfs files are not included in the zip download; we have to pay; ...).  In consequence, large files, both on the input and on the output side, reside at https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/leipzig .
+![Assumed PT network](analysis-artifacts/pt-data/assumed_pt_network_map.png)
 
-----
-### Run the MATSim Template scenario
+Zone-based population derivation (example):
 
-The [name] scenario has a command line interface providing the following options:
+![Zone derivation](analysis-artifacts/zone-derivation/04_density_roads_zones_new_map.png)
 
-![Scenario CLI](https://placehold.co/500x300?text=CLI+Placeholder "Scenario CLI")
+## Repository Structure
 
-It can be used by using either of these methods:
+- `scenarios/shamalgan/`: runnable scenario inputs and configs
+- `original-input-data/shamalgan/`: raw source data (OSM, raster, templates)
+- `src/main/java/org/matsim/project/`: Shamalgan preparation and run classes
+- `tools/`: utility scripts for extraction, QC, plotting, housekeeping
+- `analysis-artifacts/`: generated diagnostics, plots, and PT reference notes
 
-##### ... using an IDE, e.g. Eclipse, IntelliJ - Alternative 1: use cloned/downloaded matsim-[name] repository
-(Requires either cloning or downloading the repository.)
+## Data and Licensing
 
-1. Set up the project in your IDE.
-1. Make sure the project is configured as maven project.
-1. Run the JAVA class `src/main/java/org/matsim/run/RunTemplateScenario.java`.
-1. "Open" the output directory.  You can drag files into VIA as was already done above.
-1. Edit the config file or adjust the run class. Re-run MATSim.
-
-##### ... using a runnable jar file
-(Requires either cloning or downloading the repository and java)
-
-1. Open the cmd and go to your project directory
-2. Build the scenario using `mvnw package` 
-3. There should be a file directly in the `matsim-template` directory with name approximately as `matsim-template-1.0.jar`.
-4. Run this file from the command line using `java -jar matsim-template-1.0.jar --help` to see all possible options.
-    1. For example, one can disable lanes or run the 25pct scenario using the available options
-5. Start this scenario using the default config by running `java -jar matsim-template-1.0.jar`
-6. "Open" the output directory.  You can drag files into VIA as was already done above.
+- Code license: see `LICENSE`.
+- Input data in `original-input-data/` may have source-specific licenses and must be verified before redistribution.
